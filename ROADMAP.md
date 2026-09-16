@@ -73,25 +73,27 @@ Once the board exists, create these as tickets and immediately mark all **Done**
 
 ---
 
-## Phase 1 — Backlog & Sprint Planning
+## Phase 1 — Backlog & Sprint Planning ✅ COMPLETE
 *Goal: work is tracked like a real sprint, not ad-hoc chat requests.*
 
-- [ ] 1.1 Write epics: `Testing`, `CI/CD`, `Code Quality`, `Packaging`, `Deployment`
-- [ ] 1.2 Break epics into stories/tickets with acceptance criteria
-- [ ] 1.3 Run a mini "Sprint Planning" — pick Sprint 1 scope (Testing epic)
-- [ ] 1.4 Move tickets across the board as we do the work (To Do → In Progress → Done)
+- [x] 1.1 Write epics: `Testing`, `CI/CD`, `Code Quality`, `Packaging`, `Deployment` (Jira: BA-8 to BA-12)
+- [x] 1.2 Break epics into stories/tickets with acceptance criteria (BA-13, BA-14, BA-15 under Testing)
+- [x] 1.3 Sprint 1 scope = the 3 Testing tickets (Kanban board, no formal sprint feature used)
+- [x] 1.4 Tickets moved across the board as work happened
 
 **Commit point:** none yet — this phase is planning only, no code changes.
 
 ---
 
-## Phase 2 — Automated Testing
+## Phase 2 — Automated Testing ✅ COMPLETE
 *Goal: prove the app works with tests, not just manual clicking.*
 
-- [ ] 2.1 Add JUnit 5 as a dependency
-- [ ] 2.2 Unit tests for `Account`, `SavingsAccount`, `CheckingAccount` (deposit/withdraw logic, exception thrown correctly)
-- [ ] 2.3 Unit tests for `BankManager` (add/find/deposit/withdraw via the manager)
-- [ ] 2.4 Run the full suite locally, confirm green
+- [x] 2.1 Add JUnit 5 as a dependency (`junit-platform-console-standalone-1.10.2.jar` — the combined jar; avoid mixing in IntelliJ's auto-added JUnit4/5.8.1 libraries, they collide)
+- [x] 2.2 Unit tests for `SavingsAccount` (4 tests), `CheckingAccount` (3 tests) — deposit/withdraw logic, exception thrown correctly
+- [x] 2.3 Unit tests for `BankManager` (5 tests) — add/find/deposit/withdraw via the manager
+- [x] 2.4 Full suite run locally — 12/12 passing
+
+**Known gap logged for later:** tests currently write to the real `bank.db` instead of an isolated test database — tracked as its own backlog ticket, not blocking.
 
 **Commit point:** after 2.4 — "Add JUnit test suite for model and service layers."
 
