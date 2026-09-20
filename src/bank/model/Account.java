@@ -32,6 +32,12 @@ public abstract class Account implements BankOperations {
         System.out.println("Balance: " + balance);
     }
 
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + " [accountNumber=" + accountNumber +
+                ", name=" + name + ", branch=" + branch + ", balance=" + balance + "]";
+    }
+
     public String getAccountNumber() { return accountNumber; }
     public String getName() { return name; }
     public String getBranch() { return branch; }
