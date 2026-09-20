@@ -38,8 +38,23 @@ public abstract class Account implements BankOperations {
                 ", name=" + name + ", branch=" + branch + ", balance=" + balance + "]";
     }
 
-    public String getAccountNumber() { return accountNumber; }
-    public String getName() { return name; }
-    public String getBranch() { return branch; }
-    public double getBalance() { return balance; }
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getBranch() {
+        return branch;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public boolean hasSufficientFunds(double amount) {
+        return amount <= balance;
+    }
 }
