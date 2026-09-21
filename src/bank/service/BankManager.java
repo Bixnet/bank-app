@@ -3,6 +3,7 @@ package bank.service;
 import bank.model.Account;
 import bank.exceptions.InsufficientFundsException;
 import bank.db.AccountRepository;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -36,6 +37,10 @@ public class BankManager {
         for (Account acc : accounts) {
             acc.showDetails();
         }
+    }
+
+    public int getAccountCount() {
+        return accounts.size();
     }
 
     public void depositTo(String accountNumber, double amount) {
