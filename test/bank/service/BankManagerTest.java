@@ -53,4 +53,11 @@ public class BankManagerTest {
         bank.withdrawFrom("888", 300);
         assertEquals(700, bank.findByAccountNumber("888").getBalance());
     }
+
+    @Test
+    void getAccountCountReturnsCorrectNumber() {
+        bank.addAccount(new SavingsAccount("Anna", "999", "Berlin", 1000, 0.05));
+        assertEquals(1, bank.getAccountCount());
+    }
 }
+

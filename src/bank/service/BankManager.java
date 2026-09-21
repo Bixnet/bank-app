@@ -33,13 +33,13 @@ public class BankManager {
         return null;
     }
 
-    public void showAllAccounts() {
+    public void getAccount() {
         for (Account acc : accounts) {
             acc.showDetails();
         }
     }
 
-    public String getSummary() {
+    public String getAccountCount() {
         return "Total accounts: " + accounts.size();
     }
 
