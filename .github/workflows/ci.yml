@@ -32,3 +32,15 @@ jobs:
       - name: Run tests
         run: |
           java -cp "libs/*:out" org.junit.platform.console.ConsoleLauncher --scan-classpath=out
+
+  sonarqube:
+    name: SonarQube
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v8.1.0
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
