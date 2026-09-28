@@ -114,9 +114,11 @@ Once the board exists, create these as tickets and immediately mark all **Done**
 ## Phase 4 — Code Quality
 *Goal: catch style/bug issues automatically, like real teams do with linting/static analysis.*
 
-- [ ] 4.1 Connect the repo to SonarCloud (free for public repos)
-- [ ] 4.2 Fix flagged issues (code smells, duplicate code, etc.)
-- [ ] 4.3 Add SonarCloud step into the CI workflow
+- [x] 4.1 Connect the repo to SonarCloud (free for public repos)
+- [ ] 4.2 Fix flagged issues (code smells, duplicate code, etc.) — **DEFERRED**,
+  not skipped: 19 open issues (all Maintainability, 0 Security/Bugs), Quality
+  Gate already passes, so nothing is blocked. Revisit before v1.0 release.
+- [x] 4.3 Add SonarCloud step into the CI workflow
 
 **Commit point:** after fixes — "Address SonarCloud findings."
 
