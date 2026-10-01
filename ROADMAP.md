@@ -122,15 +122,20 @@ Once the board exists, create these as tickets and immediately mark all **Done**
 
 ---
 
-## Phase 5 — Packaging & Release
+## ## Phase 5 — Packaging & Release
 *Goal: produce a real installable artifact, not just "run it in IntelliJ."*
 
-- [ ] 5.1 Use `jpackage` (built into the JDK) to produce a native app image
-- [ ] 5.2 Create a GitHub Release with the packaged app attached
-- [ ] 5.3 Tag the version (`v1.0.0`) following semantic versioning
+- [x] 5.1 Use `jpackage` (built into the JDK) to produce a native app image
+- [x] 5.2 Create a GitHub Release with the packaged app attached
+- [x] 5.3 Tag the version (`v1.0.0`) following semantic versioning
+
+**Note:** packaged via `jpackage --type app-image` (standalone folder + .exe,
+bundled JVM, no installer). Real gotcha: SQLite driver needed `slf4j-api` at
+runtime, not previously in `libs/` — added `slf4j-api-2.0.17.jar` and updated
+the jar manifest's `Class-Path`. Released as `BankApp-v1.0.0-win.zip` on
+GitHub Releases, tagged `v1.0.0`.
 
 **Commit point:** tag + release, not a code commit.
-
 ---
 
 ## Phase 6 — (Stretch) Cloud Deployment
