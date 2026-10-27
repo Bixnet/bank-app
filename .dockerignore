@@ -1,0 +1,11 @@
+.git/
+.idea/
+build/
+dist/
+release/
+out/
+libs/
+bank-api/target/
+manifest.txt
+*.zip
+bank.db
