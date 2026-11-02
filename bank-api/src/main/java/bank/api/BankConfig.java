@@ -7,12 +7,29 @@ import bank.service.BankManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
 @Configuration
 public class BankConfig {
 
     @Bean
-    public AccountRepository accountRepository() {
-        AccountRepository repo = new AccountRepository();
+    public AccountRepository accountRepository() throws URISyntaxException {
+        String databaseUrl = System.getenv("DATABASE_URL");
+
+        AccountRepository repo;
+        if (databaseUrl == null || databaseUrl.isBlank()) {
+            // Local run: SQLite file, same as before
+            repo = new AccountRepository();
+        } else {
+            // Cloud run: Render gives postgresql://user:password@host/dbname
+            URI uri = new URI(databaseUrl);
+            String[] login = uri.getUserInfo().split(":", 2);
+            int port = uri.getPort() == -1 ? 5432 : uri.getPort();
+            String jdbcUrl = "jdbc:postgresql://" + uri.getHost() + ":" + port + uri.getPath();
+            repo = new AccountRepository(jdbcUrl, login[0], login[1]);
+        }
+
         repo.createTable();
         return repo;
     }

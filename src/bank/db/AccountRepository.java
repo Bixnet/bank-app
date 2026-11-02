@@ -10,18 +10,41 @@ import java.util.List;
 import java.util.logging.Logger;
 
 public class AccountRepository {
-    private static final String URL = "jdbc:sqlite:bank.db";
+    private static final String DEFAULT_URL = "jdbc:sqlite:bank.db";
     private static final Logger logger = Logger.getLogger(AccountRepository.class.getName());
+
+    private final String url;
+    private final String user;
+    private final String password;
+
+    // Desktop app and tests: local SQLite file, no login needed
+    public AccountRepository() {
+        this(DEFAULT_URL, null, null);
+    }
+
+    // Cloud: any JDBC URL (for example Postgres) with a login
+    public AccountRepository(String url, String user, String password) {
+        this.url = url;
+        this.user = user;
+        this.password = password;
+    }
+
+    private Connection connect() throws SQLException {
+        if (user == null) {
+            return DriverManager.getConnection(url);
+        }
+        return DriverManager.getConnection(url, user, password);
+    }
 
     public void createTable() {
         String sql = "CREATE TABLE IF NOT EXISTS accounts (" +
                 "accountNumber TEXT PRIMARY KEY, " +
                 "name TEXT, " +
                 "branch TEXT, " +
-                "balance REAL, " +
+                "balance DOUBLE PRECISION, " +
                 "type TEXT, " +
-                "extra REAL)";
-        try (Connection conn = DriverManager.getConnection(URL);
+                "extra DOUBLE PRECISION)";
+        try (Connection conn = connect();
              Statement stmt = conn.createStatement()) {
             stmt.execute(sql);
         } catch (SQLException e) {
@@ -30,8 +53,12 @@ public class AccountRepository {
     }
 
     public void save(Account acc) {
-        String sql = "INSERT OR REPLACE INTO accounts (accountNumber, name, branch, balance, type, extra) VALUES (?, ?, ?, ?, ?, ?)";
-        try (Connection conn = DriverManager.getConnection(URL);
+        String sql = "INSERT INTO accounts (accountNumber, name, branch, balance, type, extra) " +
+                "VALUES (?, ?, ?, ?, ?, ?) " +
+                "ON CONFLICT (accountNumber) DO UPDATE SET " +
+                "name = excluded.name, branch = excluded.branch, " +
+                "balance = excluded.balance, type = excluded.type, extra = excluded.extra";
+        try (Connection conn = connect();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setString(1, acc.getAccountNumber());
@@ -57,7 +84,7 @@ public class AccountRepository {
         List<Account> result = new ArrayList<>();
         String sql = "SELECT * FROM accounts";
 
-        try (Connection conn = DriverManager.getConnection(URL);
+        try (Connection conn = connect();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
