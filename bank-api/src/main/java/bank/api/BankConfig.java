@@ -24,10 +24,17 @@ public class BankConfig {
         } else {
             // Cloud run: Render gives postgresql://user:password@host/dbname
             URI uri = new URI(databaseUrl);
-            String[] login = uri.getUserInfo().split(":", 2);
+            String userInfo = uri.getUserInfo();
+            int colon = userInfo == null ? -1 : userInfo.indexOf(':');
+            if (colon < 0) {
+                throw new IllegalStateException(
+                        "DATABASE_URL must look like postgresql://user:password@host/dbname");
+            }
+            String user = userInfo.substring(0, colon);
+            String password = userInfo.substring(colon + 1);
             int port = uri.getPort() == -1 ? 5432 : uri.getPort();
             String jdbcUrl = "jdbc:postgresql://" + uri.getHost() + ":" + port + uri.getPath();
-            repo = new AccountRepository(jdbcUrl, login[0], login[1]);
+            repo = new AccountRepository(jdbcUrl, user, password);
         }
 
         repo.createTable();
