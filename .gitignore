@@ -2,3 +2,10 @@
 out/
 *.class
 bank.db
+
+# Packaging output (jpackage and release builds)
+build/
+dist/
+release/
+manifest.txt
+*.zip
