@@ -174,7 +174,7 @@ Postgres database expires on 2026-12-02 unless upgraded.
 ## Phase 7 — Bank-style Web UI (read-only)
 *Goal: a real page people can open, served by the same Spring Boot service.*
 
-- [ ] 7.1 Jira epic "Web UI"; static page in `bank-api/src/main/resources/static/` that fetches `GET /accounts` and shows account cards
+- [x] 7.1 Jira epic "Web UI" (BA-27); static page `index.html` + `app.js` in `bank-api/src/main/resources/static/` fetches `GET /accounts` and shows account cards (BA-28)
 - [ ] 7.2 Bank look: header/navigation, total balance summary, account cards, responsive layout
 - [ ] 7.3 Loading, empty and error states (for example the API waking from sleep)
 
