@@ -171,12 +171,12 @@ Postgres database expires on 2026-12-02 unless upgraded.
 
 ---
 
-## Phase 7 — Bank-style Web UI (read-only)
+## Phase 7 — Bank-style Web UI (read-only) ✅ COMPLETE
 *Goal: a real page people can open, served by the same Spring Boot service.*
 
 - [x] 7.1 Jira epic "Web UI" (BA-27); static page `index.html` + `app.js` in `bank-api/src/main/resources/static/` fetches `GET /accounts` and shows account cards (BA-28)
 - [x] 7.2 Bank look: header/navigation, total balance summary, account cards, responsive layout — `styles.css` with design tokens; SonarCloud floating-promise fix via ES module + top-level `await` (BA-29)
-- [ ] 7.3 Loading, empty and error states (for example the API waking from sleep)
+- [x] 7.3 Loading, empty and error states (for example the API waking from sleep) — skeleton cards + "Waking up" hint, empty message, error with Retry; tested with DevTools throttling, request blocking and local overrides (BA-30)
 
 ---
 
@@ -204,7 +204,7 @@ Postgres database expires on 2026-12-02 unless upgraded.
 ## Phase 10 — Quality & Retro
 *Goal: close the deferred work and reflect, like a real team at the end of a project.*
 
-- [ ] 10.1 Revisit deferred SonarCloud findings (4.2) and add tests so new-code coverage passes
+- [ ] 10.1 Revisit deferred SonarCloud findings (4.2) and add tests so new-code coverage passes; fix the 2 analysis warnings (set `sonar.java.binaries` and `sonar.sourceEncoding=UTF-8`)
 - [ ] 10.2 Tests use an isolated test database
 - [ ] 10.3 Retro: what worked, what was painful, what I'd do differently
 - [ ] 10.4 README: full architecture + how to run it (desktop, API, Docker, cloud) + live URL
