@@ -175,7 +175,7 @@ Postgres database expires on 2026-12-02 unless upgraded.
 *Goal: a real page people can open, served by the same Spring Boot service.*
 
 - [x] 7.1 Jira epic "Web UI" (BA-27); static page `index.html` + `app.js` in `bank-api/src/main/resources/static/` fetches `GET /accounts` and shows account cards (BA-28)
-- [ ] 7.2 Bank look: header/navigation, total balance summary, account cards, responsive layout
+- [x] 7.2 Bank look: header/navigation, total balance summary, account cards, responsive layout — `styles.css` with design tokens; SonarCloud floating-promise fix via ES module + top-level `await` (BA-29)
 - [ ] 7.3 Loading, empty and error states (for example the API waking from sleep)
 
 ---
