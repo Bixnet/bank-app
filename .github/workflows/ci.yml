@@ -19,6 +19,8 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
+          cache: 'maven'
+          cache-dependency-path: 'bank-api/pom.xml'
 
       - name: Compile source code
         run: |
@@ -32,6 +34,9 @@ jobs:
       - name: Run tests
         run: |
           java -cp "libs/*:out" org.junit.platform.console.ConsoleLauncher --scan-classpath=out
+
+      - name: Build and test bank-api
+        run: mvn -B -f bank-api/pom.xml test
 
   sonarqube:
     name: SonarQube
