@@ -3,18 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bank App</title>
+    <title>Bank App · Accounts</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<header>
-    <h1>Bank App</h1>
+<header class="site-header">
+    <div class="container header-inner">
+        <a class="brand" href="/">
+            <span class="brand-mark" aria-hidden="true">B</span>
+            <span class="brand-name">Bank App</span>
+        </a>
+        <nav class="main-nav" aria-label="Main">
+            <a href="/" aria-current="page">Accounts</a>
+            <span class="nav-soon" title="Coming in Phase 9">Transactions</span>
+            <span class="nav-soon" title="Coming in Phase 8">Profile</span>
+        </nav>
+    </div>
 </header>
 
-<main>
-    <h2>Your accounts</h2>
-    <p id="status">Loading accounts…</p>
-    <div id="accounts"></div>
+<main class="container">
+    <h1 class="page-title">Accounts overview</h1>
+
+    <section class="summary" aria-labelledby="summary-label">
+        <p class="summary-label" id="summary-label">Total balance</p>
+        <p class="summary-amount" id="total">–</p>
+        <p class="summary-meta" id="status">Loading accounts…</p>
+    </section>
+
+    <section aria-labelledby="accounts-title">
+        <h2 class="section-title" id="accounts-title">Your accounts</h2>
+        <div class="account-grid" id="accounts"></div>
+    </section>
 </main>
+
+<footer class="site-footer">
+    <div class="container">Bank App · demo project, not a real bank</div>
+</footer>
 
 <script type="module" src="app.js"></script>
 </body>
