@@ -35,4 +35,4 @@ async function loadAccounts() {
     }
 }
 
-loadAccounts();
+await loadAccounts();
