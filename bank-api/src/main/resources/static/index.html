@@ -27,12 +27,13 @@
     <section class="summary" aria-labelledby="summary-label">
         <p class="summary-label" id="summary-label">Total balance</p>
         <p class="summary-amount" id="total">–</p>
-        <p class="summary-meta" id="status">Loading accounts…</p>
+        <p class="summary-meta" id="status" aria-live="polite">Loading accounts…</p>
     </section>
 
     <section aria-labelledby="accounts-title">
         <h2 class="section-title" id="accounts-title">Your accounts</h2>
-        <div class="account-grid" id="accounts"></div>
+        <div class="state" id="state" hidden></div>
+        <div class="account-grid" id="accounts" aria-busy="true"></div>
     </section>
 </main>
 
