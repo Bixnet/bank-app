@@ -27,6 +27,12 @@
 			<artifactId>spring-boot-starter-webmvc</artifactId>
 		</dependency>
 
+		<!-- Login, password hashing (BCrypt), sessions and CSRF protection -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
 		<!-- Needed by AccountRepository (same driver as the desktop app) -->
 		<dependency>
 			<groupId>org.xerial</groupId>
