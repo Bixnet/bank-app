@@ -1,7 +1,12 @@
+import { getCurrentUser, logout } from './api.js';
+
 const statusEl = document.getElementById('status');
 const totalEl = document.getElementById('total');
 const accountsEl = document.getElementById('accounts');
 const stateEl = document.getElementById('state');
+const userAreaEl = document.getElementById('user-area');
+const userNameEl = document.getElementById('user-name');
+const logoutButton = document.getElementById('logout');
 
 const money = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' });
 
@@ -68,6 +73,11 @@ function showLoading() {
     statusEl.textContent = 'Loading accounts…';
 }
 
+function showUser(user) {
+    userNameEl.textContent = user.username;
+    userAreaEl.hidden = false;
+}
+
 function showAccounts(accounts) {
     accountsEl.setAttribute('aria-busy', 'false');
 
@@ -95,23 +105,32 @@ function showError(error) {
         'error',
         'Something went wrong',
         'We could not load your accounts (' + error.message + '). Please try again.',
-        () => { void loadAccounts(); }
+        () => { void start(); }
     );
 }
 
-async function loadAccounts() {
+async function fetchAccounts() {
+    const response = await fetch('/accounts');
+    if (!response.ok) {
+        throw new Error('server answered with status ' + response.status);
+    }
+    return response.json();
+}
+
+async function start() {
     showLoading();
     const slowHint = setTimeout(() => {
         statusEl.textContent = 'Waking up the server… this can take up to a minute on the free plan.';
     }, SLOW_HINT_DELAY_MS);
 
     try {
-        const response = await fetch('/accounts');
-        if (!response.ok) {
-            throw new Error('server answered with status ' + response.status);
+        const user = await getCurrentUser();
+        if (!user) {
+            window.location.replace('/login.html');
+            return;
         }
-        const accounts = await response.json();
-        showAccounts(accounts);
+        showUser(user);
+        showAccounts(await fetchAccounts());
     } catch (error) {
         showError(error);
     } finally {
@@ -119,4 +138,17 @@ async function loadAccounts() {
     }
 }
 
-await loadAccounts();
+async function signOut() {
+    logoutButton.disabled = true;
+    try {
+        await logout();
+        window.location.replace('/login.html');
+    } catch (error) {
+        statusEl.textContent = 'Could not sign out: ' + error.message;
+        logoutButton.disabled = false;
+    }
+}
+
+logoutButton.addEventListener('click', () => { void signOut(); });
+
+await start();

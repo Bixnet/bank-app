@@ -23,9 +23,11 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        // The dashboard files: the page itself decides what to show
+                        // Page files: the pages themselves decide what to show
                         .requestMatchers(HttpMethod.GET,
-                                "/", "/index.html", "/styles.css", "/app.js", "/favicon.ico").permitAll()
+                                "/", "/index.html", "/login.html", "/register.html",
+                                "/styles.css", "/app.js", "/api.js", "/login.js", "/register.js",
+                                "/favicon.ico").permitAll()
                         // Needed before anyone is logged in
                         .requestMatchers(HttpMethod.GET, "/api/csrf").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/register").permitAll()
@@ -36,7 +38,7 @@ public class SecurityConfig {
                         // Everything else needs a logged-in user
                         .anyRequest().authenticated())
                 .formLogin(form -> form
-                        .loginPage("/")
+                        .loginPage("/login.html")
                         .loginProcessingUrl("/api/login")
                         .successHandler((request, response, authentication) ->
                                 response.setStatus(HttpServletResponse.SC_NO_CONTENT))
