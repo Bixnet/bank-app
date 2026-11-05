@@ -13,11 +13,17 @@
             <span class="brand-mark" aria-hidden="true">B</span>
             <span class="brand-name">Bank App</span>
         </a>
-        <nav class="main-nav" aria-label="Main">
-            <a href="/" aria-current="page">Accounts</a>
-            <span class="nav-soon" title="Coming in Phase 9">Transactions</span>
-            <span class="nav-soon" title="Coming in Phase 8">Profile</span>
-        </nav>
+        <div class="header-right">
+            <nav class="main-nav" aria-label="Main">
+                <a href="/" aria-current="page">Accounts</a>
+                <span class="nav-soon" title="Coming in Phase 9">Transactions</span>
+                <span class="nav-soon" title="Coming later">Profile</span>
+            </nav>
+            <div class="user-area" id="user-area" hidden>
+                <span class="user-name" id="user-name"></span>
+                <button class="button button-ghost" type="button" id="logout">Sign out</button>
+            </div>
+        </div>
     </div>
 </header>
 
