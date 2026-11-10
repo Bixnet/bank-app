@@ -57,3 +57,23 @@ export async function logout() {
         throw new Error('server answered with status ' + response.status);
     }
 }
+
+/**
+ * Deposit or withdraw. action is 'deposit' or 'withdraw'.
+ * Returns { ok: true, account } with the new balance, or { ok: false, message, signedOut }.
+ */
+export async function moveMoney(accountNumber, action, amount) {
+    const response = await fetch('/accounts/' + encodeURIComponent(accountNumber) + '/' + action, {
+        method: 'POST',
+        headers: { ...(await csrfHeader()), 'Content-Type': 'application/json' },
+        body: JSON.stringify({ amount })
+    });
+    if (response.ok) {
+        return { ok: true, account: await response.json() };
+    }
+    if (response.status === 401) {
+        return { ok: false, signedOut: true, message: 'Your session has ended. Please sign in again.' };
+    }
+    const body = await response.json().catch(() => ({}));
+    return { ok: false, message: body.error ?? 'The transaction failed (status ' + response.status + ').' };
+}
