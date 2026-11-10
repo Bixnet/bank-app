@@ -9,3 +9,7 @@ dist/
 release/
 manifest.txt
 *.zip
+# Local databases and secrets: never commit these
+*.db
+.env
+*.env

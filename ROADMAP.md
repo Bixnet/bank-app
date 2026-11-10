@@ -180,7 +180,7 @@ Postgres database expires on 2026-12-02 unless upgraded.
 
 ---
 
-## Phase 8 — Authentication & Authorization
+## Phase 8 — Authentication & Authorization ✅ COMPLETE
 *Goal: only logged-in users see their own accounts.*
 
 - [x] 8.1 Jira epic "Security" (BA-31); `users` and `account_owners` tables used only by `bank-api` (desktop app unchanged) — `DatabaseSettings`, `User`, `UserRepository` + 7 tests on a temp database; CI now also builds and tests `bank-api` (BA-32)
