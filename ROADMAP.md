@@ -188,7 +188,7 @@ Postgres database expires on 2026-12-02 unless upgraded.
 - [x] 8.3 Protect the API: `/accounts` needs login and returns only the user's accounts; ADMIN sees all — `GET /accounts/{number}` returns 403 for other users' accounts; open `GET /api/health` (checks the database) replaces `/accounts` as the UptimeRobot target (BA-34)
 - [x] 8.4 Login and Register pages in the UI; logout button — `login.html`, `register.html`, shared `api.js` (CSRF), username + Sign out in the header; done before 8.3 on purpose so the live site always has a working sign-in (BA-35)
 - [x] 8.5 Security tests (401 without login, 403 for another user's account, no plain-text passwords) — `SecurityTest` (12 MockMvc tests incl. CSRF and BCrypt hash check); all `bank-api` tests now use a throwaway database via `TestDatabaseConfig` (the desktop tests in 10.2 still use `bank.db`) (BA-36)
-- [ ] 8.6 Secrets review: no credentials in code or repo
+- [x] 8.6 Secrets review: no credentials in code or repo — full history scanned (no leaks); session cookie HttpOnly + SameSite=Lax, Secure on Render via `SERVER_SERVLET_SESSION_COOKIE_SECURE=true`; `.gitignore` covers `*.db` and `.env` (BA-37)
 
 ---
 
