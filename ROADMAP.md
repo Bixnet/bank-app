@@ -180,7 +180,7 @@ Postgres database expires on 2026-12-02 unless upgraded.
 
 ---
 
-## Phase 8 — Authentication & Authorization
+## Phase 8 — Authentication & Authorization ✅ COMPLETE
 *Goal: only logged-in users see their own accounts.*
 
 - [x] 8.1 Jira epic "Security" (BA-31); `users` and `account_owners` tables used only by `bank-api` (desktop app unchanged) — `DatabaseSettings`, `User`, `UserRepository` + 7 tests on a temp database; CI now also builds and tests `bank-api` (BA-32)
@@ -195,7 +195,7 @@ Postgres database expires on 2026-12-02 unless upgraded.
 ## Phase 9 — Transactions in the UI
 *Goal: deposit and withdraw from the browser, safely behind login.*
 
-- [ ] 9.1 Authenticated `POST` endpoints for deposit and withdraw (owner only), exceptions turned into clear messages
+- [ ] 9.1 Authenticated `POST` endpoints for deposit and withdraw (owner only), exceptions turned into clear messages — part 1 done: strict `deposit`/`withdraw` in `BankManager` (validation, clear exceptions, `synchronized`) (BA-40); endpoints next (BA-41)
 - [ ] 9.2 UI forms and feedback messages
 - [ ] 9.3 Optional: transaction history
 
