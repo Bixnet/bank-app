@@ -195,7 +195,7 @@ Postgres database expires on 2026-12-02 unless upgraded.
 ## Phase 9 — Transactions in the UI
 *Goal: deposit and withdraw from the browser, safely behind login.*
 
-- [ ] 9.1 Authenticated `POST` endpoints for deposit and withdraw (owner only), exceptions turned into clear messages — part 1 done: strict `deposit`/`withdraw` in `BankManager` (validation, clear exceptions, `synchronized`) (BA-40); endpoints next (BA-41)
+- [x] 9.1 Authenticated `POST` endpoints for deposit and withdraw (owner only), exceptions turned into clear messages — strict `BankManager.deposit`/`withdraw` (BA-40); `POST /accounts/{number}/deposit|withdraw` with 400/403/404/409 via `@ExceptionHandler`, 8 MockMvc tests (BA-41)
 - [ ] 9.2 UI forms and feedback messages
 - [ ] 9.3 Optional: transaction history
 
