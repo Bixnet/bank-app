@@ -218,4 +218,4 @@ Postgres database expires on 2026-12-02 unless upgraded.
 1. **No step is skipped** — if something isn't relevant, we mark it done/skipped explicitly, not silently drop it.
 2. **You commit at every marked commit point** — I'll tell you exactly when and give you the commit message.
 3. **Every ticket lives on the board** before we start coding it, not after.
-4. **This file is the source of truth** — if the plan changes, we update this file, not just the chat.
+4. **This file is the source of truth** — if the plan changes, we update this file, not just the chat.
