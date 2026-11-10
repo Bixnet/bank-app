@@ -31,11 +31,11 @@ public class SecurityConfig {
                         // Needed before anyone is logged in
                         .requestMatchers(HttpMethod.GET, "/api/csrf").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/register").permitAll()
-                        // Still open on purpose until BA-34 protects it
-                        .requestMatchers(HttpMethod.GET, "/accounts").permitAll()
+                        // For UptimeRobot: says only UP or DOWN, no data
+                        .requestMatchers(HttpMethod.GET, "/api/health").permitAll()
                         // Spring's error page, so real errors are not hidden behind a 401
                         .requestMatchers("/error").permitAll()
-                        // Everything else needs a logged-in user
+                        // Everything else needs a logged-in user (including /accounts)
                         .anyRequest().authenticated())
                 .formLogin(form -> form
                         .loginPage("/login.html")

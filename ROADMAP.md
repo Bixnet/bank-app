@@ -185,7 +185,7 @@ Postgres database expires on 2026-12-02 unless upgraded.
 
 - [x] 8.1 Jira epic "Security" (BA-31); `users` and `account_owners` tables used only by `bank-api` (desktop app unchanged) — `DatabaseSettings`, `User`, `UserRepository` + 7 tests on a temp database; CI now also builds and tests `bank-api` (BA-32)
 - [x] 8.2 Spring Security + BCrypt password hashing; register, login, logout (session cookie), CSRF protection — `SecurityConfig` (deny by default, `/accounts` open until 8.3), `AuthController` (`/api/register`, `/api/me`, `/api/csrf`), demo users `anna`/`max`/`admin` seeded only from `DEMO_PASSWORD`/`ADMIN_PASSWORD` env vars (BA-33)
-- [ ] 8.3 Protect the API: `/accounts` needs login and returns only the user's accounts; ADMIN sees all
+- [x] 8.3 Protect the API: `/accounts` needs login and returns only the user's accounts; ADMIN sees all — `GET /accounts/{number}` returns 403 for other users' accounts; open `GET /api/health` (checks the database) replaces `/accounts` as the UptimeRobot target (BA-34)
 - [x] 8.4 Login and Register pages in the UI; logout button — `login.html`, `register.html`, shared `api.js` (CSRF), username + Sign out in the header; done before 8.3 on purpose so the live site always has a working sign-in (BA-35)
 - [ ] 8.5 Security tests (401 without login, 403 for another user's account, no plain-text passwords)
 - [ ] 8.6 Secrets review: no credentials in code or repo
