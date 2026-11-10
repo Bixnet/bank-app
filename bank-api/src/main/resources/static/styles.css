@@ -438,3 +438,57 @@ main {
     color: var(--accent);
     font-weight: 600;
 }
+
+/* ---------- Deposit and withdraw on the account cards (BA-42) ---------- */
+.card-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.button-small {
+    margin-top: 0;
+    padding: 6px 14px;
+    font-size: 0.9rem;
+}
+
+.button-secondary {
+    border: 1px solid #c9d0dc;
+    background: var(--surface);
+    color: var(--brand);
+}
+
+.button-secondary:hover {
+    background: #eef1f6;
+}
+
+.money-form {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 12px;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.card-message {
+    margin: 8px 0 0;
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+.card-message-success {
+    background: var(--accent-soft);
+    color: var(--accent);
+}
+
+.card-message-error {
+    border: 1px solid #f1c4c4;
+    background: #fdf3f3;
+    color: #9b1c1c;
+}
