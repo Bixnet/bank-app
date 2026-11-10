@@ -192,22 +192,23 @@ Postgres database expires on 2026-12-02 unless upgraded.
 
 ---
 
-## Phase 9 — Transactions in the UI
+## Phase 9 — Transactions in the UI ✅ COMPLETE
 *Goal: deposit and withdraw from the browser, safely behind login.*
 
 - [x] 9.1 Authenticated `POST` endpoints for deposit and withdraw (owner only), exceptions turned into clear messages — strict `BankManager.deposit`/`withdraw` (BA-40); `POST /accounts/{number}/deposit|withdraw` with 400/403/404/409 via `@ExceptionHandler`, 8 MockMvc tests (BA-41)
 - [x] 9.2 UI forms and feedback messages — Deposit/Withdraw on each account card, inline amount form, green/red messages with the server's reason, balance and total update without reload (BA-42)
-- [ ] 9.3 Optional: transaction history
+- [ ] 9.3 Optional: transaction history — **skipped for now**, kept in the backlog (BA-43)
 
 ---
 
-## Phase 10 — Quality & Retro
+## Phase 10 — Quality & Retro ✅ WRAPPED UP
 *Goal: close the deferred work and reflect, like a real team at the end of a project.*
 
-- [ ] 10.1 Revisit deferred SonarCloud findings (4.2) and add tests so new-code coverage passes; fix the 2 analysis warnings (set `sonar.java.binaries` and `sonar.sourceEncoding=UTF-8`)
-- [ ] 10.2 Tests use an isolated test database
-- [ ] 10.3 Retro: what worked, what was painful, what I'd do differently
-- [ ] 10.4 README: full architecture + how to run it (desktop, API, Docker, cloud) + live URL
+- [ ] 10.1 Revisit deferred SonarCloud findings (4.2) and add tests so new-code coverage passes; fix the 2 analysis warnings (set `sonar.java.binaries` and `sonar.sourceEncoding=UTF-8`) — **deferred**, backlog (BA-46)
+- [ ] 10.2 Tests use an isolated test database — `bank-api` and the new core tests already do; `BankManagerTest` still uses `bank.db` — **deferred**, backlog (BA-47)
+- [x] 10.3 Retro: what worked, what was painful, what I'd do differently — `RETRO.md` (BA-45)
+- [x] 10.4 README: full architecture + how to run it (desktop, API, Docker, cloud) + live URL (BA-45)
+- [ ] Also in the backlog: money as cents instead of `double` (BA-48); confirm the Secure cookie on Render (BA-38)
 
 **Reminder:** the free Render Postgres expires on 2026-12-02 — decide to upgrade, recreate, or move host before then.
 
